@@ -5,6 +5,12 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 import path from "path";
 import url from "url";
+//routes import
+import ownersRouter from "./routes/ownersRouter.js"
+import usersRouter from "./routes/usersRouter.js"
+import productsRouter from "./routes/productsRouter.js"
+
+import db from "./config/mongoose-connection.js"
 
 const app = express();
 
@@ -20,6 +26,12 @@ app.set("view engine", "ejs")
 app.get("/", (req, res)=>{
     res.send("kem chho")
 })
+
+app.use("/owners", ownersRouter);
+app.use("/users", usersRouter);
+app.use("/products", productsRouter);
+
+
 app.listen(3000, (err)=>{
     console.log("server is up and running 3000")
 })
